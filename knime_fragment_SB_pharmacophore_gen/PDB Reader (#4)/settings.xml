@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="settings.xml">
+<entry key="node_file" type="xstring" value="settings.xml"/>
+<config key="flow_stack"/>
+<config key="internal_node_subsettings">
+<entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
+</config>
+<config key="model">
+<config key="macromolecules">
+<entry key="array-size" type="xint" value="1"/>
+<entry key="0" type="xstring" value="/home/"/>
+</config>
+</config>
+<config key="variables">
+<config key="macromolecules">
+<config key="0">
+<entry key="used_variable" type="xstring" value="var_input"/>
+<entry key="exposed_variable" type="xstring" isnull="true" value=""/>
+</config>
+</config>
+</config>
+<entry key="customDescription" type="xstring" isnull="true" value=""/>
+<entry key="state" type="xstring" value="IDLE"/>
+<config key="nodecontainer_message">
+<entry key="type" type="xstring" value="WARNING"/>
+<entry key="message" type="xstring" value="Errors loading flow variables into node : "/>
+</config>
+<entry key="factory" type="xstring" value="com.inteligand.knime.nodes.io.pdb.PDBReaderNodeFactory"/>
+<entry key="node-name" type="xstring" value="PDB Reader"/>
+<entry key="node-bundle-name" type="xstring" value="LigandScout Extensions for the KNIME Workbench"/>
+<entry key="node-bundle-symbolic-name" type="xstring" value="com.inteligand.knime"/>
+<entry key="node-bundle-vendor" type="xstring" value="InteLigand GmbH"/>
+<entry key="node-bundle-version" type="xstring" value="1.7.9"/>
+<entry key="node-feature-name" type="xstring" value="LigandScout Extensions for the KNIME Workbench"/>
+<entry key="node-feature-symbolic-name" type="xstring" value="com.inteligand.knime.feature.group"/>
+<entry key="node-feature-vendor" type="xstring" value="Inte:Ligand GmbH"/>
+<entry key="node-feature-version" type="xstring" value="1.7.9"/>
+<config key="factory_settings"/>
+<entry key="name" type="xstring" value="PDB Reader"/>
+<entry key="hasContent" type="xboolean" value="false"/>
+<entry key="isInactive" type="xboolean" value="false"/>
+<config key="ports">
+<config key="port_1">
+<entry key="index" type="xint" value="1"/>
+<entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+</config>
+</config>
+<config key="filestores">
+<entry key="file_store_location" type="xstring" isnull="true" value=""/>
+<entry key="file_store_id" type="xstring" isnull="true" value=""/>
+</config>
+</config>
