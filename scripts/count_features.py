@@ -4,6 +4,7 @@ import CDPL.Pharm as Pharm
 import CDPL.Math as Math
 import CDPL.Chem as Chem
 import CDPL.Base as Base
+import CDPL.MolProp as MolProp
 import numpy
 from collections import Counter
 
@@ -18,13 +19,15 @@ def count_features():
     sdf_reader = Chem.SDFMoleculeReader(ifs)
 
     lig_pharm = Pharm.BasicPharmacophore()
-    pharm_gen = Pharm.DefaultPharmacophoreGenerator(True)
+    pharm_gen = Pharm.DefaultPharmacophoreGenerator()
     ftr_list = list()
 
     while sdf_reader.read(ligand):
         Chem.perceiveSSSR(ligand, True)
         Chem.setAromaticityFlags(ligand, False)
         Chem.setRingFlags (ligand, False)
+        MolProp.calcAtomHydrophobicities(ligand, False)
+        
         pharm_gen.generate(ligand, lig_pharm)
         ftr_list += [Pharm.getType(ftr) for ftr in lig_pharm]
     
