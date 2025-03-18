@@ -1,5 +1,5 @@
 #arg1 = path to ligands sdf
-#arg2 = path to receptor path to receptor with  core ligand
+#arg2 = path to receptor path to receptor with core ligand
 #!/bin/bash
 
 SCRIPT=$(readlink -f $0)
