@@ -16,7 +16,7 @@ cmd.load(sys.argv[1])
 cmd.remove('organic')
 cmd.remove('solvent')
 cmd.remove('inorganic')
-cmd.load(pathname+"/other/benzene.sdf")
+cmd.load(pathname+"/data/benzene.sdf")
 expression = "(x,y,z)=(x+" + str(sys.argv[2]) + ",y+" + str(sys.argv[3]) + ",z+" + str(sys.argv[4]) + ")"
 cmd.alter_state("1", "benzene", expression)
 cmd.save(sys.argv[1][:-4]+"_prepared.pdb")
