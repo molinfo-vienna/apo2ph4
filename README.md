@@ -21,6 +21,24 @@
 - AutoDock4
 - AutoDock Vina
 
+**Recommended way to install required packages:**
+
+The easiest and recommended way to obtain and install most of the
+packages required to run *Apo2ph4* is to create a dedicated conda
+environment and perform the package installation as follows:
+
+```console
+conda create apo2ph4 python==3.10
+conda acivate apo2ph4
+pip install cdpkit
+pip install scikit-learn
+conda install pymol-open-source
+conda install openbabel
+conda install bioconda::autodock
+conda install autodock-vina
+conda install mgltools
+```
+
 ### Quickstart guide
 
 The workflow comprises three steps (scripts) where one of them is
@@ -39,7 +57,7 @@ dummy molecule at the defined coordinates.
 For example:
 
 ```console
-  apo2ph4_define_binding_site.py [protein].pdb 141.021 55.154 89.114
+apo2ph4_define_binding_site.py [protein].pdb 141.021 55.154 89.114
 ```
 This generates *\[protein\]\_prepared.pdb* in the same folder as the
 input PDB.
@@ -53,7 +71,7 @@ The second part of the workflow is a bash script that takes two
 positional arguments, for example:
 
 ```console
-  sh apo2ph4_prepare_and_dock.sh [fragment_library].sdf [protein]_prepared.pdb
+sh apo2ph4_prepare_and_dock.sh [fragment_library].sdf [protein]_prepared.pdb
 ```
 *\[fragment\_library\].sdf* should contain the fragment database with
 3D-coordinates in SDF format (this database may for example be prepared
@@ -112,12 +130,12 @@ for advanced usage.
 *Basic example (mandatory arguments only):*
 
 ```console
-  apo2ph4_generate_ph4.py -i pharmacophores.pml -o my_ph4.pml -g ../
+apo2ph4_generate_ph4.py -i pharmacophores.pml -o my_ph4.pml -g ../
 ```
 *Advanced example:*
 
 ```console
-  apo2ph4_generate_ph4.py -i pharmacophores.pml -o my_ph4.pml -g ../ -n 8 --name "my pharmacophore model" -H 5 --H_energy -0.6 -v
+apo2ph4_generate_ph4.py -i pharmacophores.pml -o my_ph4.pml -g ../ -n 8 --name "my pharmacophore model" -H 5 --H_energy -0.6 -v
 ```
 It is recommended to examine the final pharmacophore model visually by
 means of *LigandScout* to make sure no features have been placed outside
