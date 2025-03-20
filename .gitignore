@@ -1,5 +1,7 @@
-tempdock
+*~
 *.map
 *.pml
+tempdock
 pharmacophores
-*~
+complex_list.list
+feature_count.txt
