@@ -1,7 +1,5 @@
 import sys
 
-
-
 mw = {
     'H' : 1,
     'B' : 10.8,
@@ -21,13 +19,12 @@ mw = {
     'PS': 1
 }
 
-
-
 with open(sys.argv[1], 'r') as f:
     a = []
     line = f.readline()
     total_weight = 0
     x_sum, y_sum, z_sum = 0, 0, 0
+
     while line:
         if line.startswith('HETATM'):
             weight = mw[line[76:78].strip()]   
@@ -35,11 +32,12 @@ with open(sys.argv[1], 'r') as f:
             x_sum += float(line[30:38].strip())*weight
             y_sum += float(line[38:46].strip())*weight
             z_sum += float(line[46:54].strip())*weight
+
         line = f.readline()
+
     x = round(x_sum/total_weight, 2)
     y = round(y_sum/total_weight, 2)
     z = round(z_sum/total_weight, 2)
-
 
 with open('vinaconf.txt', 'w+') as conf:
     conf.write('receptor = receptor.pdbqt\n')
@@ -56,5 +54,3 @@ with open('vinaconf.txt', 'w+') as conf:
     conf.write('\ncpu = 8')
     conf.write('\nnum_modes = 2')
     conf.write('\nenergy_range = 2')
-
-
