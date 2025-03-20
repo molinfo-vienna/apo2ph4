@@ -1,5 +1,7 @@
 # Instructions for the generation of *apo* site pharmacophores by the [Apo2ph4](https://pubs.acs.org/doi/10.1021/acs.jcim.2c00814) algorithm
 
+Copyright © 2022 Jörg Heider and Thomas Seidel
+
 **Requirements**
 
 - Python 3
@@ -8,8 +10,8 @@
 - Pymol python bindings (e.g. <https://pymol.org/conda/>)
 - MGLTools (1.5.6 or newer) (<https://ccsb.scripps.edu/mgltools/downloads/>)
 - OpenBabel (<http://openbabel.org/wiki/Main_Page>)
-- KNIME (4.1.2 or newer, <https://www.knime.com/downloads>)
-- LigandScout KNIME exensions (available as a KNIME Partner extension)
+- KNIME (optional - see below, 4.1.2 or newer, <https://www.knime.com/downloads>)
+- LigandScout KNIME exensions (optional - see below, available via KNIME update site https://www.inteligand.com/knime-nodes)
 - AutoDock4 including AutoGrid4 (<https://autodock.scripps.edu/download-autodock4/>)
 - AutoDock Vina (<https://vina.scripps.edu/downloads/>)
 
@@ -23,25 +25,32 @@
 
 **Recommended way to install required packages:**
 
-The easiest and recommended way to obtain and install most of the
-packages required to run *Apo2ph4* is to create a dedicated conda
-environment and perform the package installation as follows:
+The easiest and recommended way to install (most of) the external software
+needed by the *Apo2ph4* scripts is to create a dedicated conda
+environment and perform an installation of the required packages by executing
+the commands below (assuming an active conda base environment) in the given order:
 
 ```console
-conda create apo2ph4 python==3.10
+conda config --add channels conda-forge
+conda config --add channels bioconda
+conda create -n apo2ph4 python==3.10
 conda acivate apo2ph4
-pip install cdpkit
-pip install scikit-learn
 conda install pymol-open-source
 conda install openbabel
-conda install bioconda::autodock
+conda install autodock
+conda install autogrid
 conda install autodock-vina
 conda install mgltools
+pip3 install cdpkit
+pip3 install scikit-learn
 ```
+The above environment setup commands need to be executed only once. The
+*Apo2ph4* scripts will then run without issues when executed from within an
+active `apo2ph4` environment.
 
 ### Quickstart guide
 
-The workflow comprises three steps (scripts) where one of them is
+The workflow comprises four steps (scripts) where one of them is
 optional. If desired, these scripts may be executed in succession using
 a bash script to require no intervention after a binding pocket is
 selected.
@@ -57,7 +66,7 @@ dummy molecule at the defined coordinates.
 For example:
 
 ```console
-apo2ph4_define_binding_site.py [protein].pdb 141.021 55.154 89.114
+python3 apo2ph4_define_binding_site.py [protein].pdb 141.021 55.154 89.114
 ```
 This generates *\[protein\]\_prepared.pdb* in the same folder as the
 input PDB.
@@ -71,7 +80,7 @@ The second part of the workflow is a bash script that takes two
 positional arguments, for example:
 
 ```console
-sh apo2ph4_prepare_and_dock.sh [fragment_library].sdf [protein]_prepared.pdb
+bash apo2ph4_prepare_and_dock_knime.sh [fragment_library].sdf [protein]_prepared.pdb
 ```
 *\[fragment\_library\].sdf* should contain the fragment database with
 3D-coordinates in SDF format (this database may for example be prepared
@@ -85,16 +94,33 @@ binding site (other ligands, ions and solvent molecules must be
 removed). The script should ideally be called from the directory that
 contains the PDB file .
 
-The script generates a combined *LigandScout* \*.pml file as
-*./pharmacophores/pharmacophores.pml* in the current working
-directory. The necessary grid energy files are placed in the parent
+The necessary grid energy files are placed in the parent
 folder as \*.map (e.g. *receptor.C.map*) files which also contains the
 *feature\_count.txt* file required for subsequent steps.
 
+*Vina* docking parameters are hardcoded, these may be changed by modifying
+the `write_vina_conf.py` file in the workflow *scripts*
+directory
+
+Intermediate files such as docked poses, mock ligand/protein complexes
+are stored in directory *./tempdock* .
+
+**3a\) apo2ph4\_generate\_docked\_frag\_ph4s\_knime.sh**
+
+This script generates interaction pharmacophores of the docked fragments
+combined into a single *LigandScout* \*.pml file named
+*./pharmacophores/pharmacophores.pml* in the current working
+directory by means of a *KNIME* workflow executed in batch mode.
+
+Executed as:
+
+```console
+bash apo2ph4_generate_docked_frag_ph4s_knime.sh
+```
 **Notes:**
 
-It should be noted that *KNIME* will be executed in batch mode with pre-set
-memory parameters. If not enough resources are available or for optimal
+*KNIME* will be executed with pre-set memory parameters.
+If not enough resources are available or for optimal
 performance the following parameters of the last line of
 `apo2ph4_prepare_and_dock.sh` should be modified: *-vmargs
 -Xmx32000m -Xms10048m*
@@ -102,20 +128,27 @@ performance the following parameters of the last line of
 *-Xmx32000m* defines the maximum available memory (in this case 32 GB) and
 *-Xms10048m* defines the initial memory reserved (in this case 10 GB)
 
-Intermediate files such as docked poses, mock ligand/protein complexes
-are stored in directory *./tempdock* .
+The executed *KNIME* workflow utilizes the *LigandScout KNIME exensions*
+for pharmacophore generation. The *LigandScout* exensions are proprietary
+software and require a valid license!
 
-Contents of *./tempdock* are not required for subsequent steps and
-get only saved for debugging purposes. As this occupies a lot of space
-(~500 MB for 200 fragments) it is recommended that a `rm -rf ./tempdock`
-is added to the end of the script should these files not
-be desired.
+**3b\) apo2ph4\_generate\_docked\_frag\_ph4s\_cdpkit.sh**
 
-*Vina* docking parameters are hardcoded, these may be changed by modifying
-the `write_vina_conf.py` file in the workflow *scripts*
-directory
+Executed as:
 
-**3\) apo2ph4\_generate\_ph4.py**
+```console
+bash apo2ph4_generate_docked_frag_ph4s_cdpkit.sh
+```
+
+This variant uses CDPKit functionality to generate the interaction pharmacophores of the docked fragments
+and thus does not require a proprietary license.
+The individual pharmacophores are as well combined into a single *LigandScout* \*.pml file named
+*./pharmacophores/pharmacophores.pml* in the current working directory. The *apo* pharmacophores
+resulting from the last step of the overall workflow will not be 100% the same as the ones generated with
+*LigandScout* fragment pharmacophores but are of comparable quality and will neither be worse nor better
+on average.
+
+**4\) apo2ph4\_generate\_ph4.py**
 
 The last step of the workflow generates a final pharmacophore model and
 requires the *pharmacophores.pml*, *grid map* and
@@ -130,13 +163,20 @@ for advanced usage.
 *Basic example (mandatory arguments only):*
 
 ```console
-apo2ph4_generate_ph4.py -i pharmacophores.pml -o my_ph4.pml -g ../
+python3 apo2ph4_generate_ph4.py -i pharmacophores/pharmacophores.pml -o pharmacophores/my_ph4.pml -g ./
 ```
 *Advanced example:*
 
 ```console
-apo2ph4_generate_ph4.py -i pharmacophores.pml -o my_ph4.pml -g ../ -n 8 --name "my pharmacophore model" -H 5 --H_energy -0.6 -v
+python3 apo2ph4_generate_ph4.py -i pharmacophores/pharmacophores.pml -o pharmacophores/my_ph4.pml -g ./ -n 8 --name "my pharmacophore model" -H 5 --H_energy -0.6 -v
 ```
 It is recommended to examine the final pharmacophore model visually by
 means of *LigandScout* to make sure no features have been placed outside
 the actual binding pocket.
+
+**Notes:**
+
+Contents of *./tempdock* are not required anymore after this last workflow step
+has finished and get only saved for debugging purposes. As this intermediary
+files consume a lot of space (~500 MB for 200 fragments) it is recommended
+to execute `rm -rf ./tempdock` should these files not be desired.
