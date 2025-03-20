@@ -16,12 +16,12 @@
 <config key="Var_0">
 <entry key="name" type="xstring" value="var_input"/>
 <entry key="class" type="xstring" value="STRING"/>
-<entry key="value" type="xstring" value="/"/>
+<entry key="value" type="xstring" value=""/>
 </config>
 <config key="Var_1">
 <entry key="name" type="xstring" value="var_output"/>
 <entry key="class" type="xstring" value="STRING"/>
-<entry key="value" type="xstring" value="/"/>
+<entry key="value" type="xstring" value=""/>
 </config>
 </config>
 <config key="workflow_credentials"/>
