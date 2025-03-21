@@ -169,12 +169,12 @@ settings may be specified by optional parameters.
 Execute `apo2ph4_generate_ph4.py -h` to see all available parameters
 for advanced usage.
 
-*Basic example (mandatory arguments only):*
+Basic example (mandatory arguments only):
 
 ```console
 python3 apo2ph4_generate_ph4.py -i pharmacophores/pharmacophores.pml -o pharmacophores/my_ph4.pml -g ./
 ```
-*Advanced example:*
+Advanced example:
 
 ```console
 python3 apo2ph4_generate_ph4.py -i pharmacophores/pharmacophores.pml -o pharmacophores/my_ph4.pml -g ./ -n 8 --name "my pharmacophore model" -H 5 --H_energy -0.6 -v
