@@ -151,9 +151,9 @@ Script execution:
 bash apo2ph4_generate_docked_frag_ph4s_cdpkit.sh
 ```
 
-The individual pharmacophores are as well written to a single \*.pml file named
-*./pharmacophores/pharmacophores.pml* in the current working directory. The *apo* pharmacophores
-resulting from the last step of the overall workflow will not 100% equal to the ones generated from
+The individual pharmacophores are as well written to a single file named
+*./pharmacophores/pharmacophores.pml*. The *apo* pharmacophores
+resulting from the last step of the overall workflow will not be 100% equal to the ones generated from
 *LigandScout* fragment pharmacophores but are of comparable quality and will neither be worse nor better
 on average.
 
