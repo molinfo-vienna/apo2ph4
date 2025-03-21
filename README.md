@@ -142,8 +142,8 @@ the KNIME workflow!
 
 **3b\) apo2ph4\_generate\_docked\_frag\_ph4s\_cdpkit.sh**
 
-This variant uses CDPKit functionality to generate the interaction pharmacophores of the docked fragments.
-Since CDPKit is free software, no proprietary software license will be required to sucessfully run the script.
+This variant uses *CDPKit* functionality to generate the interaction pharmacophores of the docked fragments.
+Since *CDPKit* is free software, no proprietary software license will be required to sucessfully run the script.
 
 Script execution:
 
@@ -151,9 +151,9 @@ Script execution:
 bash apo2ph4_generate_docked_frag_ph4s_cdpkit.sh
 ```
 
-The individual pharmacophores are as well written to a single *LigandScout* \*.pml file named
+The individual pharmacophores are as well written to a single \*.pml file named
 *./pharmacophores/pharmacophores.pml* in the current working directory. The *apo* pharmacophores
-resulting from the last step of the overall workflow will not be 100% the same as the ones generated with
+resulting from the last step of the overall workflow will not 100% equal to the ones generated from
 *LigandScout* fragment pharmacophores but are of comparable quality and will neither be worse nor better
 on average.
 
