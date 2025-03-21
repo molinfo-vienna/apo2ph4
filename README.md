@@ -19,7 +19,7 @@ Copyright © 2022 Jörg Heider and Thomas Seidel
 
 - MGLTools Utilities
 - OpenBabel
-- KNIME
+- KNIME (optional - see below)
 - AutoDock4
 - AutoDock Vina
 
