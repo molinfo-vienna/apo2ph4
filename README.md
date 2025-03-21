@@ -23,7 +23,7 @@ Copyright © 2022 Jörg Heider and Thomas Seidel
 - AutoDock4
 - AutoDock Vina
 
-**Recommended way to install required packages:**
+**Recommended way to install required external software:**
 
 A quite simple and proven to work possibility to install all external software
 packages (except *KNIME* whose use is optional) needed by the *Apo2ph4* workflow scripts
