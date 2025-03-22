@@ -35,7 +35,7 @@ in the given order:
 conda config --add channels conda-forge # already added when using Miniforge conda
 conda config --add channels bioconda
 conda create -n apo2ph4 python==3.10
-conda acivate apo2ph4
+conda activate apo2ph4
 conda install pymol-open-source
 conda install openbabel
 conda install autodock
