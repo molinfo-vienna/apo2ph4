@@ -1,4 +1,4 @@
-# Instructions for the generation of *apo* site pharmacophores by means of [Apo2ph4](https://pubs.acs.org/doi/10.1021/acs.jcim.2c00814)
+# Instructions for the generation of *apo* site pharmacophores by the [Apo2ph4](https://pubs.acs.org/doi/10.1021/acs.jcim.2c00814) method
 
 Copyright © 2022 Jörg Heider and Thomas Seidel
 
