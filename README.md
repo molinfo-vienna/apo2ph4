@@ -111,7 +111,7 @@ are stored in directory *./tempdock*.
 The contents of *./tempdock* are not required anymore after the workflow step 3
 has finished and are only kept for debugging purposes. As this data
 files consume a lot of space (~500 MB for 200 fragments) it is recommended
-to execute `rm -rf ./tempdock` (after step 3!) should these files not be desired.
+to delete *./tempdock* (after step 3!) should these files not be desired.
 
 **3a\) apo2ph4\_generate\_docked\_frag\_ph4s\_knime.sh**
 
@@ -129,15 +129,15 @@ bash apo2ph4_generate_docked_frag_ph4s_knime.sh
 
 *KNIME* will be executed with pre-set memory parameters.
 If not enough resources are available or for optimal
-performance the following parameters of the last line of
-`apo2ph4_prepare_and_dock.sh` should be modified: *-vmargs
+performance the following parameters in the last line of
+`apo2ph4_generate_docked_frag_ph4s_knime.sh` should be modified: *-vmargs
 -Xmx32000m -Xms10048m*
 
 *-Xmx32000m* defines the maximum available memory (in this case 32 GB) and
 *-Xms10048m* defines the initial memory reserved (in this case 10 GB)
 
 Pharmacophore generation is carried out using a subset of the KNIME nodes provided by the *LigandScout KNIME exensions*.
-The *LigandScout* exensions are proprietary software and a valid license will be required to be able to execute
+The *LigandScout* exensions are proprietary software and a valid license will be required to be able to successfully run
 the KNIME workflow!
 
 **3b\) apo2ph4\_generate\_docked\_frag\_ph4s\_cdpkit.sh**
