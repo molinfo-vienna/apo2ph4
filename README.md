@@ -74,7 +74,7 @@ input PDB.
 
 This file may also be opened in *LigandScout* which now recognizes the
 binding site due to placement of a dummy ligand molecule.
-
+ 
 **2\) apo2ph4\_prepare\_and\_dock.sh**
 
 The second step of the workflow is a *bash* script that takes two
