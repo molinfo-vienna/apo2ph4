@@ -7,8 +7,9 @@ SCRIPTPATH=`dirname $SCRIPT`
 
 if [ "$CONDA_PREFIX" != "" ]; then # if executed in a conda environment do some conda-specific setup
     PATH=$PATH:$CONDA_PREFIX/MGLToolsPckgs/AutoDockTools/Utilities24
-    export BABEL_LIBDIR=$CONDA_PREFIX/lib/openbabel/2.4.1
-    export BABEL_DATADIR=$CONDA_PREFIX/share/openbabel/2.4.1
+    BABEL_VERSION=`obabel -V | cut -f 3 -d ' '`
+    export BABEL_LIBDIR=$CONDA_PREFIX/lib/openbabel/$BABEL_VERSION
+    export BABEL_DATADIR=$CONDA_PREFIX/share/openbabel/$BABEL_VERSION
 fi
 
 rm tempdock -rf
