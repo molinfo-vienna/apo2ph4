@@ -22,6 +22,9 @@ obabel $1 -O tempdock/ligand.pdb -m # converts ligands to individual .pdb files
 
 lignum=$(ls -l tempdock/ligand*.pdb | wc -l) 
 
+python3 ${SCRIPTPATH}/scripts/write_vina_conf.py $2  # writes vina configuration file
+mv vinaconf.txt tempdock
+
 cd tempdock
 
 prepare_receptor4.py -r receptor.pdb -o receptor.pdbqt   # prepares receptor for autogrid and for docking
@@ -33,7 +36,6 @@ for (( i = 1; i<=$lignum; i++ )) do  # loop that converts all ligand.pdb files i
     echo "processed ligand $i"
 done 
 
-python3 ${SCRIPTPATH}/scripts/write_vina_conf.py $2  # writes vina configuration file
 autogrid4 -p out.gpf  # create grid files needed later on
 mv *.map ../
 
