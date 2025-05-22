@@ -81,7 +81,7 @@ The second step of the workflow is a *bash* script that takes two
 positional arguments:
 
 ```console
-bash apo2ph4_prepare_and_dock_knime.sh [fragment_library].sdf [protein]_prepared.pdb
+bash apo2ph4_prepare_and_dock.sh [fragment_library].sdf [protein]_prepared.pdb
 ```
 *\[fragment\_library\].sdf* should contain the fragment database with
 3D-coordinates in SDF format (this database may for example be prepared
